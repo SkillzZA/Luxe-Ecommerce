@@ -33,7 +33,7 @@ A modern, full-stack e-commerce web application built with Next.js, TypeScript, 
 
 | Category       | Technology                                                 | Version     | Role                                        |
 | :------------- | :--------------------------------------------------------- | :---------- | :------------------------------------------ |
-| **Framework**  | [Next.js](https://nextjs.org/)                             | `14.1.0`    | Full-stack React Framework                  |
+| **Framework**  | [Next.js](https://nextjs.org/)                             | `14.2.0`    | Full-stack React Framework                  |
 | **Language**   | [TypeScript](https://www.typescriptlang.org/)              | `~5.3.3`    | Superset of JavaScript                      |
 | **Database**   | [Prisma](https://www.prisma.io/)                           | `~6.5.0`    | ORM / Database Toolkit                      |
 |                | [SQLite](https://www.sqlite.org/index.html)                | -           | Database Engine (Development)               |
