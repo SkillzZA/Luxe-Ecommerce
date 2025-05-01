@@ -18,7 +18,7 @@ A modern, full-stack e-commerce web application built with Next.js, TypeScript, 
 
 ## Technology Stack
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.1.0-blue)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14.2.0-blue)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-~5.3.3-blue)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-~6.5.0-darkblue)](https://www.prisma.io/)
 [![NextAuth.js](https://img.shields.io/badge/NextAuth.js-~4.24.11-purple)](https://next-auth.js.org/)
