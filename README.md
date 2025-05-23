@@ -183,11 +183,3 @@ After seeding the database, you can log in with the default admin credentials:
 *   `styles/`: Global CSS files.
 *   `types/`: TypeScript type definitions.
 
-## Further Development / TODOs
-
-*   Implement comprehensive search functionality for products.
-*   Add pagination to admin tables and product listings.
-*   Enhance order management features (e.g., detailed order view for users).
-*   Implement password reset functionality.
-*   Write more unit and integration tests.
-*   Refine UI/UX based on user feedback.
