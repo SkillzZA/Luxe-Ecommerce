@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/api/products": "pages/api/products.js",
+  "/admin": "pages/admin.js",
+  "/api/categories": "pages/api/categories.js",
+  "/api/users": "pages/api/users.js",
+  "/api/orders": "pages/api/orders.js",
+  "/admin/users": "pages/admin/users.js",
+  "/admin/products": "pages/admin/products.js",
+  "/admin/users/new": "pages/admin/users/new.js"
+}

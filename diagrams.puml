@@ -1,0 +1,394 @@
+@startuml Luxe_Ecommerce_EERD
+'--------------------------------------
+' Enhanced Entity-Relationship Diagram (EERD)
+'--------------------------------------
+title Luxe Ecommerce - Enhanced Entity Relationship Diagram (Based on Prisma Schema)
+
+!define optional (?)
+
+' Entities (Tables)
+entity User {
+  + id: String <<PK>>
+  -- Attributes --
+  name: String
+  email: String <<unique>>
+  password: String
+  role: Role <<enum>>
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+entity Product {
+  + id: String <<PK>>
+  -- Attributes --
+  name: String
+  description: String
+  price: Float
+  comparePrice: Float optional
+  mainImage: String
+  featured: Boolean
+  isNew: Boolean
+  inStock: Boolean
+  stock: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  #categoryId: String <<FK>>
+}
+
+entity Category {
+  + id: String <<PK>>
+  -- Attributes --
+  name: String <<unique>>
+  description: String optional
+  image: String optional
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+entity ProductImage {
+  + id: String <<PK>>
+  -- Attributes --
+  url: String
+  alt: String optional
+  position: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  #productId: String <<FK>>
+}
+
+entity CartItem {
+  + id: String <<PK>>
+  -- Attributes --
+  quantity: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  #userId: String <<FK>>
+  #productId: String <<FK>>
+  .. Constraints ..
+  <<unique>> (userId, productId)
+}
+
+entity WishlistItem {
+  + id: String <<PK>>
+  -- Attributes --
+  createdAt: DateTime
+  #userId: String <<FK>>
+  #productId: String <<FK>>
+  .. Constraints ..
+  <<unique>> (userId, productId)
+}
+
+entity Order {
+  + id: String <<PK>>
+  -- Attributes --
+  total: Float
+  status: OrderStatus <<enum>>
+  paymentMethod: String
+  paymentStatus: PaymentStatus <<enum>>
+  createdAt: DateTime
+  updatedAt: DateTime
+  #userId: String <<FK>>
+  #shippingAddressId: String <<FK>>
+}
+
+entity OrderItem {
+  + id: String <<PK>>
+  -- Attributes --
+  name: String
+  price: Float
+  quantity: Int
+  #orderId: String <<FK>>
+  #productId: String <<FK>>
+}
+
+entity Address {
+  + id: String <<PK>>
+  -- Attributes --
+  name: String
+  line1: String
+  line2: String optional
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  phone: String optional
+  isDefault: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  #userId: String <<FK>>
+}
+
+' Relationships (Cardinalities based on Prisma: [] implies many, optional ? relation implies 0..1)
+User ||--o{ Orders : places
+User ||--o{ CartItem : has
+User ||--o{ WishlistItem : has
+User ||--o{ Address : owns
+
+Product }o--|| Category : belongs to
+Product ||--o{ ProductImage : has
+Product ||--o{ CartItem : appears in
+Product ||--o{ WishlistItem : appears in
+Product ||--o{ OrderItem : included in
+
+Order ||--|{ OrderItem : contains (1 to many)
+Order }o--|| Address : ships to (Many orders to 1 address possible, but order maps to 1 address)
+
+
+note "Enums defined in schema: Role, OrderStatus, PaymentStatus" as EnumNote
+note "Referential actions (e.g., onDelete: Cascade) defined in schema but not shown visually here." as RefNote
+
+@enduml
+
+@startuml Luxe_Ecommerce_ClassDiagram_WithMethods
+'--------------------------------------
+' Class Diagram with Methods
+'--------------------------------------
+title Luxe Ecommerce - Class Diagram (with Methods)
+
+' Enums
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+' Classes (Models)
+class User {
+  +id: String
+  +name: String
+  +email: String
+  #password: String ' Typically private/protected
+  +role: Role
+  +createdAt: DateTime
+  +updatedAt: DateTime
+  .. Methods ..
+  +register()
+  +login()
+  +updateProfile()
+  +addAddress(address: Address)
+  +removeAddress(addressId: String)
+  +getOrders(): Order[]
+  +getCartItems(): CartItem[]
+  +getWishlistItems(): WishlistItem[]
+  +isAdmin(): Boolean
+}
+
+class Product {
+  +id: String
+  +name: String
+  +description: String
+  +price: Float
+  +comparePrice: Float?
+  +mainImage: String
+  +categoryId: String
+  +featured: Boolean
+  +isNew: Boolean
+  +inStock: Boolean
+  +stock: Int
+  +createdAt: DateTime
+  +updatedAt: DateTime
+  .. Methods ..
+  +updateStock(change: Int)
+  +isAvailable(quantity: Int): Boolean
+  +getImages(): ProductImage[]
+}
+
+class Category {
+  +id: String
+  +name: String
+  +description: String?
+  +image: String?
+  +createdAt: DateTime
+  +updatedAt: DateTime
+  .. Methods ..
+  +getProducts(): Product[]
+}
+
+class ProductImage {
+  +id: String
+  +url: String
+  +productId: String
+  +alt: String?
+  +position: Int
+  +createdAt: DateTime
+  +updatedAt: DateTime
+}
+
+class CartItem {
+  +id: String
+  +userId: String
+  +productId: String
+  +quantity: Int
+  +createdAt: DateTime
+  +updatedAt: DateTime
+  .. Methods ..
+  +updateQuantity(newQuantity: Int)
+  +getItemTotal(): Float
+}
+
+class WishlistItem {
+  +id: String
+  +userId: String
+  +productId: String
+  +createdAt: DateTime
+}
+
+class Order {
+  +id: String
+  +userId: String
+  +total: Float
+  +status: OrderStatus
+  +shippingAddressId: String
+  +paymentMethod: String
+  +paymentStatus: PaymentStatus
+  +createdAt: DateTime
+  +updatedAt: DateTime
+  .. Methods ..
+  +calculateTotal(): Float
+  +updateStatus(newStatus: OrderStatus)
+  +updatePaymentStatus(newStatus: PaymentStatus)
+  +getOrderItems(): OrderItem[]
+  +getShippingAddress(): Address
+}
+
+class OrderItem {
+  +id: String
+  +orderId: String
+  +productId: String
+  +name: String ' Product name at time of order
+  +price: Float ' Product price at time of order
+  +quantity: Int
+  .. Methods ..
+  +getItemTotal(): Float
+}
+
+class Address {
+  +id: String
+  +userId: String
+  +name: String
+  +line1: String
+  +line2: String?
+  +city: String
+  +state: String
+  +postalCode: String
+  +country: String
+  +phone: String?
+  +isDefault: Boolean
+  .. Methods ..
+  +updateDetails()
+  +formatAddress(): String
+}
+
+
+' Relationships (Associations) - Arrows denote navigability where obvious
+User "1" *-- "0..*" Order : places >
+User "1" *-- "0..*" CartItem : has >
+User "1" *-- "0..*" WishlistItem : has >
+User "1" *-- "0..*" Address : owns >
+
+Product "0..*" *-- "1" Category : belongs to <
+Product "1" *-- "0..*" ProductImage : has >
+' CartItem references Product, not necessarily navigable back
+CartItem "0..*" -- "1" Product : item >
+' WishlistItem references Product
+WishlistItem "0..*" -- "1" Product : item >
+' OrderItem references Product
+OrderItem "0..*" -- "1" Product : item >
+
+Order "1" *-- "1..*" OrderItem : contains >
+' Order references Address, Address might reference back via orders field (removed from class def for simplicity)
+Order "0..*" -- "1" Address : ships to >
+
+
+' Dependencies on Enums
+User ..> Role
+Order ..> OrderStatus
+Order ..> PaymentStatus
+
+@enduml
+
+@startuml Luxe_Ecommerce_UseCaseDiagram
+'--------------------------------------
+' Use Case Diagram
+'--------------------------------------
+title Luxe Ecommerce - Use Case Diagram
+
+left to right direction
+
+actor "End User" as User
+actor Admin
+
+rectangle "Luxe Ecommerce System" {
+
+  usecase "Manage Account" as UC_Account
+  usecase "Login / Register" as UC_Login
+  usecase "Browse Products" as UC_Browse
+  usecase "View Product Details" as UC_ViewProduct
+  usecase "Search Products" as UC_Search
+  usecase "Manage Cart" as UC_Cart
+  usecase "Manage Wishlist" as UC_Wishlist
+  usecase "Manage Addresses" as UC_Address
+  usecase "Place Order" as UC_Checkout
+  usecase "View Order History" as UC_OrderHistory
+  usecase "Track Order Status" as UC_TrackOrder
+
+  usecase "Admin Login" as UC_AdminLogin
+  usecase "Manage Users" as UC_ManageUsers
+  usecase "Manage Products" as UC_ManageProducts
+  usecase "Manage Categories" as UC_ManageCategories
+  usecase "Manage Orders" as UC_ManageOrders
+  usecase "View Dashboard" as UC_Dashboard
+
+  ' User Associations
+  User --> UC_Login
+  User --> UC_Account
+  User --> UC_Browse
+  User --> UC_Search
+  User --> UC_ViewProduct
+  User --> UC_Cart
+  User --> UC_Wishlist
+  User --> UC_Address
+  User --> UC_Checkout
+  User --> UC_OrderHistory
+  User --> UC_TrackOrder
+
+  ' Admin Associations
+  Admin --> UC_AdminLogin
+  Admin --> UC_Dashboard
+  Admin --> UC_ManageUsers
+  Admin --> UC_ManageProducts
+  Admin --> UC_ManageCategories
+  Admin --> UC_ManageOrders
+
+  ' Include/Extend Relationships
+  UC_Account <.. UC_Login : <<extends>> ' Must be logged in
+  UC_Cart <.. UC_Login : <<extends>>
+  UC_Wishlist <.. UC_Login : <<extends>>
+  UC_Address <.. UC_Login : <<extends>>
+  UC_Checkout <.. UC_Login : <<extends>>
+  UC_OrderHistory <.. UC_Login : <<extends>>
+  UC_TrackOrder <.. UC_Login : <<extends>>
+
+
+  UC_Checkout ..> UC_Address : <<include>> ' Need to select address
+  UC_Checkout ..> UC_Cart : <<include>> ' Uses cart items
+
+  UC_ManageProducts ..> UC_ManageCategories : <<include>> ' Products belong to categories
+
+}
+
+@enduml

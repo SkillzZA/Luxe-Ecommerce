@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{sectsty}
+\usepackage{tocbibind} % Add TOC to TOC
+
+% Adjust geometry and styles if needed
+\geometry{a4paper, margin=1in}
+\sectionfont{\large\bfseries}
+\subsectionfont{\normalsize\bfseries}
+
+\title{Luxe Ecommerce Project Documentation}
+\author{Your Name Here} % Replace with your name
+\date{\today}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Luxe Ecommerce Project Documentation},
+    pdfpagemode=FullScreen,
+    }
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Written Proposal}
+
+\subsection{Project Idea}
+"Luxe Ecommerce" is a modern, full-stack e-commerce web application designed to provide a sophisticated online shopping platform.
+
+\subsection{Use Case}
+The primary goal is to offer a seamless online shopping experience for end-users, enabling them to browse products, manage personal carts and wishlists, place orders securely, and track their shipment status. Concurrently, it provides an administrative interface for staff to manage the product catalog, user accounts, and oversee order fulfillment efficiently. The application leverages a robust tech stack, including Next.js and Prisma, chosen for performance, scalability, and type safety.
+
+\section{Software Requirements Specifications (SRS)}
+
+\subsection{Functional Requirements}
+\begin{itemize}[label=\textbullet]
+    \item User registration and secure login.
+    \item Password hashing (\texttt{bcryptjs}) for enhanced security.
+    \item Role-based access control distinguishing between \texttt{USER} and \texttt{ADMIN}.
+    \item Comprehensive product browsing with detailed views, including multiple images per product.
+    \item Product categorization for organized browsing.
+    \item Functionality for searching and filtering products.
+    \item Management of a persistent shopping cart (add, remove, update quantity).
+    \item Wishlist feature for saving products for later consideration.
+    \item User address management (add, view, edit, set default).
+    \item Secure order placement process using items from the cart.
+    \item Selection of a shipping address during checkout.
+    \item Order status tracking (\texttt{PENDING}, \texttt{PROCESSING}, \texttt{SHIPPED}, \texttt{DELIVERED}, \texttt{CANCELLED}).
+    \item User access to personal order history.
+    \item Admin capabilities for managing user accounts (view, potentially edit/delete).
+    \item Admin tools for managing the product catalog (view, add, edit, delete, manage stock, feature products).
+    \item Admin interface for managing orders (view details, update status).
+    \item Admin management of product categories.
+\end{itemize}
+
+\subsection{Non-functional Requirements}
+\begin{itemize}[label=\textbullet]
+    \item \textbf{Security}: User passwords must be securely hashed. Authentication managed via \texttt{NextAuth.js} using secure tokens (\texttt{jsonwebtoken}).
+    \item \textbf{Usability}: The application must feature a clear, intuitive, and responsive user interface suitable for various devices (achieved via React, Tailwind CSS, Framer Motion).
+    \item \textbf{Maintainability}: The codebase must be well-structured, readable, and type-safe, facilitated by TypeScript and Prisma.
+    \item \textbf{Performance}: Efficient database querying (via Prisma) and optimized frontend rendering (leveraging Next.js features like SSR/SSG).
+    \item \textbf{Reliability}: Graceful error handling through custom error pages (\texttt{\_error.tsx}) and \texttt{ErrorBoundary} components.
+    \item \textbf{Scalability}: The architecture (Next.js API routes, Prisma with a potentially scalable database backend) should support future growth in users and data.
+\end{itemize}
+
+\subsection{Stakeholders}
+\begin{itemize}[label=\textbullet]
+    \item \textbf{End Users}: Customers interacting with the storefront.
+    \item \textbf{Administrators}: Staff responsible for site management.
+    \item \textbf{Developers}: Team responsible for building and maintaining the application.
+\end{itemize}
+
+\subsection{Use Cases}
+\begin{itemize}[label=\textbullet]
+    \item Register Account
+    \item Log In / Log Out
+    \item Browse Products (All / By Category)
+    \item Search Products
+    \item View Product Details
+    \item Add Product to Cart
+    \item View/Modify Shopping Cart
+    \item Add Product to Wishlist
+    \item View/Modify Wishlist
+    \item Manage User Addresses
+    \item Checkout / Place Order
+    \item View Order History
+    \item Track Order Status
+    \item (Admin) Manage Product Catalog
+    \item (Admin) Manage Categories
+    \item (Admin) Manage User Accounts
+    \item (Admin) Manage Orders
+\end{itemize}
+
+\subsection{Class Diagram (Conceptual Description)}
+A class diagram would visually represent the main entities defined in the Prisma schema (\texttt{User}, \texttt{Product}, \texttt{Order}, \texttt{Category}, \texttt{CartItem}, \texttt{OrderItem}, \texttt{Address}, etc.).
+\begin{itemize}[label=\textbullet]
+    \item Each class would contain attributes corresponding to the fields defined in the \texttt{schema.prisma} file.
+    \item Key methods representing core business logic could be inferred (e.g., \texttt{User.addOrder()}, \texttt{Product.updateStock()}).
+    \item Relationships between classes (one-to-one, one-to-many, many-to-many) would mirror those defined by the \texttt{@relation} attributes in Prisma, indicating associations and multiplicities.
+    \item Enumerated types (\texttt{Role}, \texttt{OrderStatus}, \texttt{PaymentStatus}) would be included as distinct elements or attributes with restricted values.
+\end{itemize}
+
+\section{ERD \& Enhanced ERD (Based on Prisma Schema)}
+The database structure is defined in \texttt{prisma/schema.prisma}. A visual ERD can be generated using tools like dbdiagram.io or Lucidchart based on this schema.
+
+\subsection{Entities}
+\begin{itemize}[label=\textbullet]
+    \item \texttt{User}: Customer/Admin information.
+    \item \texttt{Product}: Details of items available for sale.
+    \item \texttt{Category}: Product groupings.
+    \item \texttt{ProductImage}: Additional images for products.
+    \item \texttt{CartItem}: Association between a user, a product, and quantity in the cart.
+    \item \texttt{WishlistItem}: Association between a user and a product saved for later.
+    \item \texttt{Order}: Represents a completed purchase transaction.
+    \item \texttt{OrderItem}: Details of a specific product within an order (captures price/name at time of order).
+    \item \texttt{Address}: User's shipping/billing addresses.
+\end{itemize}
+
+\subsection{Relationships (Primary Examples)}
+\begin{itemize}[label=\textbullet]
+    \item \texttt{User} 1 -- * \texttt{Order}
+    \item \texttt{User} 1 -- * \texttt{CartItem}
+    \item \texttt{User} 1 -- * \texttt{WishlistItem}
+    \item \texttt{User} 1 -- * \texttt{Address}
+    \item \texttt{Category} 1 -- * \texttt{Product}
+    \item \texttt{Product} * -- 1 \texttt{Category}
+    \item \texttt{Product} 1 -- * \texttt{ProductImage}
+    \item \texttt{Product} 1 -- * \texttt{CartItem}
+    \item \texttt{Product} 1 -- * \texttt{OrderItem}
+    \item \texttt{Product} 1 -- * \texttt{WishlistItem}
+    \item \texttt{Order} 1 -- * \texttt{OrderItem}
+    \item \texttt{Order} * -- 1 \texttt{Address} (Shipping Address)
+\end{itemize}
+*(Note: Cardinality indicated conceptually; Prisma relations define specific foreign keys).*
+
+\subsection{Enhanced Features \& Constraints}
+\begin{itemize}[label=\textbullet]
+    \item \textbf{Enumerated Types}: \texttt{Role}, \texttt{OrderStatus}, \texttt{PaymentStatus} enforce specific allowed values for respective fields.
+    \item \textbf{Unique Constraints}: Applied to fields like \texttt{User.email}, \texttt{Category.name}, and composite keys like (\texttt{userId}, \texttt{productId}) in \texttt{CartItem} and \texttt{WishlistItem}.
+    \item \textbf{Referential Actions}: \texttt{onDelete: Cascade} used for related entities like \texttt{ProductImage}, \texttt{CartItem}, ensuring data consistency when a parent record (e.g., User, Product) is deleted.
+    \item \textbf{Default Values}: Automatically assigned values for fields like \texttt{createdAt}, \texttt{User.role}, \texttt{Order.status}, etc.
+    \item \textbf{Optional Fields}: Nullable fields indicated by \texttt{?} (e.g., \texttt{Product.comparePrice}).
+    \item \textbf{Timestamps}: Automatic \texttt{createdAt} and \texttt{updatedAt} fields for tracking record modifications.
+\end{itemize}
+
+\section{Project Scope, Tools, and Design Decisions}
+
+\subsection{Project Scope}
+The project delivers a comprehensive e-commerce platform encompassing the entire customer journey from browsing and discovery to checkout and order tracking. It includes essential user management features (authentication, profiles, addresses) and a full administrative backend for managing products, categories, users, and orders. Key functionalities like cart persistence, wishlists, stock management, and role-based access are central to the scope. Future enhancements outside the current scope might include payment gateway integrations, customer reviews, or advanced analytics.
+
+\subsection{Tools \& Technologies}
+\begin{itemize}[label=\textbullet]
+    \item \textbf{Framework}: Next.js 14
+    \item \textbf{Language}: TypeScript
+    \item \textbf{Database/ORM}: SQLite (Development), Prisma Client
+    \item \textbf{Authentication}: NextAuth.js v4, \texttt{bcryptjs}, \texttt{jsonwebtoken}
+    \item \textbf{Styling}: Tailwind CSS, PostCSS
+    \item \textbf{Frontend Core}: React 18
+    \item \textbf{UI/Animation}: Framer Motion, GSAP, react-icons
+    \item \textbf{Utilities}: react-intersection-observer, react-use
+    \item \textbf{Development Env}: Node.js, \texttt{ts-node}, ESLint
+    \item \textbf{Potential 3D}: Three.js (if utilized)
+\end{itemize}
+
+\subsection{Design Decisions}
+\begin{itemize}[label=\textbullet]
+    \item \textbf{Full-stack TypeScript}: Adopted for end-to-end type safety, improving code reliability and maintainability.
+    \item \textbf{Next.js Framework}: Chosen for its integrated features including server-side rendering (SSR), static site generation (SSG), optimized image handling, API routes, and file-based routing, contributing to performance and developer efficiency.
+    \item \textbf{Prisma ORM}: Selected for its type-safe database access, straightforward schema definition and migration management, and simplified query construction. SQLite used initially for ease of development setup.
+    \item \textbf{Tailwind CSS}: Employed for its utility-first approach, enabling rapid development of consistent and customizable user interfaces.
+    \item \textbf{NextAuth.js}: Integrated to handle complex authentication flows securely and simplify session management.
+    \item \textbf{Component-Based UI}: Leveraging React's component model to build a modular, reusable, and maintainable frontend codebase.
+    \item \textbf{API Routes}: Utilizing Next.js API routes for creating backend endpoints, keeping frontend and backend logic colocated within the same project structure where appropriate.
+    \item \textbf{Centralized Types}: Relying on Prisma-generated types and potentially a dedicated \texttt{/types} directory for consistency across the application.
+    \item \textbf{Robust Error Handling}: Implementing custom error pages (\texttt{\_error.tsx}) and \texttt{ErrorBoundary} components to enhance user experience during unexpected issues.
+\end{itemize}
+
+\end{document}
