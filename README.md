@@ -2,15 +2,9 @@
 
 A modern, full-stack e-commerce web application built with Next.js, TypeScript, Prisma, and Tailwind CSS. This project serves as a practical demonstration of building a feature-rich online store, suitable for a university course on web development.
 
-## Phase 2 – Implementation & Integration (24 marks)
-
-This project fulfills the requirements for Phase 2, focusing on implementation and integration.
-
-**Deadline:** _To be announced later_
-
 **Deliverables:**
 
-*   **Backend implementation connected to your database (with at least basic CRUD operations). (7 marks)**
+*   Backend implementation connected to your database (with at least basic CRUD operations).
     *   The backend is built using Next.js API routes.
     *   Prisma ORM is used to interact with an SQLite database (development) or any Prisma-compatible database.
     *   Full CRUD (Create, Read, Update, Delete) operations are implemented for:
@@ -18,7 +12,7 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
         *   Categories
         *   Users (Admin management)
         *   Orders
-*   **A functional frontend that interacts with the backend. (7 marks)**
+*   A functional frontend that interacts with the backend.
     *   The frontend is built with Next.js (React) and TypeScript.
     *   User interfaces are styled with Tailwind CSS.
     *   Key frontend components include:
@@ -27,12 +21,12 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
         *   User registration and login.
         *   Shopping cart and checkout process.
         *   Admin dashboard for managing products, categories, users, and orders.
-*   **Full integration demonstrating user interaction with dynamic data. (5 marks)**
+*   Full integration demonstrating user interaction with dynamic data.
     *   The application showcases seamless interaction between the frontend and backend.
     *   Data is dynamically fetched and updated without page reloads in many instances (e.g., cart updates, admin table actions).
-*   **You should use XML or/and JSON for data transferring from Server to Client. (2 marks)**
+*   You should use XML or/and JSON for data transferring from Server to Client.
     *   JSON is used as the data transfer format for all API communications between the server and client.
-*   **Final README or report with setup instructions and explanation of the architecture. (3 marks)**
+*   Final README or report with setup instructions and explanation of the architecture.
     *   This README provides setup instructions and an overview of the architecture.
     *   **Architecture Overview:**
         *   **Framework:** Next.js (handles both frontend rendering and backend API routes).
@@ -43,13 +37,13 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
         *   **Frontend:** React components (pages and components directories) render the UI, using Tailwind CSS for styling.
         *   **State Management:** Combination of React Context API (e.g., for theme) and component-level state.
         *   **Dynamic Interactions:** Client-side fetching and form submissions using `fetch` API, enabling AJAX-like behavior.
-*   **Source code (submitted via GitHub or similar).**
+*   Source code (submitted via GitHub or similar).
     *   The complete source code is available in this repository.
-*   **Hosting the app on a public server or cloud platform. (Bonus +2)**
+*   Hosting the app on a public server or cloud platform.
     *   The application is ready to be deployed to platforms like Vercel (recommended for Next.js), Netlify, AWS, or Heroku.
-*   **Using real-world data (via scraping, APIs, open datasets, etc.) (Bonus +3)**
+*   Using real-world data (via scraping, APIs, open datasets, etc.)
     *   The project includes a seeding script (`prisma/seed.ts`) to populate the database with sample data. This can be extended to use real-world datasets or APIs for product information.
-*   **Using AJAX for dynamic web based system. (Bonus +2)**
+*   Using AJAX for dynamic web based system.
     *   The application extensively uses asynchronous JavaScript requests (akin to AJAX) via the `fetch` API to interact with the backend API for operations like adding to cart, placing orders, and managing data in the admin panel, providing a dynamic user experience without full page reloads.
 
 ## Features
