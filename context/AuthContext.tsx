@@ -88,21 +88,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
       
       if (!response.ok) {
-        // Attempt to get error message from JSON, but fallback if it's not JSON
+        const responseText = await response.text(); // Read body as text since response is not OK
         let errorMessage = 'Invalid email or password';
         try {
-          const data = await response.json();
-          errorMessage = data.message || errorMessage;
+          const errorData = JSON.parse(responseText); // Attempt to parse the text as JSON
+          errorMessage = errorData.message || errorMessage;
         } catch (e) {
-          // If response.json() fails, it means the response was not valid JSON (e.g., HTML error page)
-          const textResponse = await response.text(); // Get the raw text response
-          console.error('Login API did not return JSON. Response:', textResponse);
+          // If JSON.parse fails, the response was not valid JSON (e.g., HTML error page)
+          console.error('Login API did not return valid JSON. Response text:', responseText);
           errorMessage = `Server error: Received non-JSON response. Status: ${response.status}`;
         }
         throw new Error(errorMessage);
       }
       
-      // If response.ok is true, we expect JSON
+      // If response.ok is true, then we expect a valid JSON response
       const data = await response.json(); 
       setUser(data.user);
       setIsAdmin(data.user.role === 'ADMIN');
@@ -132,18 +131,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       });
       
       if (!response.ok) {
+        const responseText = await response.text(); // Read body as text since response is not OK
         let errorMessage = 'Registration failed';
         try {
-          const data = await response.json();
-          errorMessage = data.message || errorMessage;
+          const errorData = JSON.parse(responseText); // Attempt to parse the text as JSON
+          errorMessage = errorData.message || errorMessage;
         } catch (e) {
-          const textResponse = await response.text();
-          console.error('Register API did not return JSON. Response:', textResponse);
+          // If JSON.parse fails, the response was not valid JSON (e.g., HTML error page)
+          console.error('Register API did not return valid JSON. Response text:', responseText);
           errorMessage = `Server error: Received non-JSON response. Status: ${response.status}`;
         }
         throw new Error(errorMessage);
       }
       
+      // If response.ok is true, then we expect a valid JSON response
       const data = await response.json();
       setUser(data.user);
       setIsAdmin(data.user.role === 'ADMIN');
