@@ -2,15 +2,13 @@
 
 A modern, full-stack e-commerce web application built with Next.js, TypeScript, Prisma, and Tailwind CSS. This project serves as a practical demonstration of building a feature-rich online store, suitable for a university course on web development.
 
-## Phase 2 – Implementation & Integration (24 marks)
+## Phase 2 – Implementation & Integration 
 
 This project fulfills the requirements for Phase 2, focusing on implementation and integration.
 
-**Deadline:** _To be announced later_
-
 **Deliverables:**
 
-*   **Backend implementation connected to your database (with at least basic CRUD operations). (7 marks)**
+*   **Backend implementation connected to your database (with at least basic CRUD operations). **
     *   The backend is built using Next.js API routes.
     *   Prisma ORM is used to interact with an SQLite database (development) or any Prisma-compatible database.
     *   Full CRUD (Create, Read, Update, Delete) operations are implemented for:
@@ -18,7 +16,7 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
         *   Categories
         *   Users (Admin management)
         *   Orders
-*   **A functional frontend that interacts with the backend. (7 marks)**
+*   **A functional frontend that interacts with the backend. **
     *   The frontend is built with Next.js (React) and TypeScript.
     *   User interfaces are styled with Tailwind CSS.
     *   Key frontend components include:
@@ -27,12 +25,12 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
         *   User registration and login.
         *   Shopping cart and checkout process.
         *   Admin dashboard for managing products, categories, users, and orders.
-*   **Full integration demonstrating user interaction with dynamic data. (5 marks)**
+*   **Full integration demonstrating user interaction with dynamic data.**
     *   The application showcases seamless interaction between the frontend and backend.
     *   Data is dynamically fetched and updated without page reloads in many instances (e.g., cart updates, admin table actions).
-*   **You should use XML or/and JSON for data transferring from Server to Client. (2 marks)**
+*   **You should use XML or/and JSON for data transferring from Server to Client.**
     *   JSON is used as the data transfer format for all API communications between the server and client.
-*   **Final README or report with setup instructions and explanation of the architecture. (3 marks)**
+*   **Final README or report with setup instructions and explanation of the architecture.**
     *   This README provides setup instructions and an overview of the architecture.
     *   **Architecture Overview:**
         *   **Framework:** Next.js (handles both frontend rendering and backend API routes).
