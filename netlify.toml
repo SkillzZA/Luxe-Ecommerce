@@ -1,0 +1,13 @@
+# netlify.toml
+
+[build]
+  command = "npm run build" # This will now run 'prisma generate && next build'
+  publish = ".next"
+
+[functions]
+  directory = ".next/functions"
+  node_bundler = "esbuild"
+
+# Ensures Next.js internationalized routing and other features work correctly.
+[[plugins]]
+  package = "@netlify/plugin-nextjs" 
