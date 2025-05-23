@@ -87,12 +87,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         body: JSON.stringify({ email, password }),
       });
       
-      const data = await response.json();
-      
       if (!response.ok) {
-        throw new Error(data.message || 'Invalid email or password');
+        // Attempt to get error message from JSON, but fallback if it's not JSON
+        let errorMessage = 'Invalid email or password';
+        try {
+          const data = await response.json();
+          errorMessage = data.message || errorMessage;
+        } catch (e) {
+          // If response.json() fails, it means the response was not valid JSON (e.g., HTML error page)
+          const textResponse = await response.text(); // Get the raw text response
+          console.error('Login API did not return JSON. Response:', textResponse);
+          errorMessage = `Server error: Received non-JSON response. Status: ${response.status}`;
+        }
+        throw new Error(errorMessage);
       }
       
+      // If response.ok is true, we expect JSON
+      const data = await response.json(); 
       setUser(data.user);
       setIsAdmin(data.user.role === 'ADMIN');
       localStorage.setItem('token', data.token);
@@ -100,7 +111,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError('An unknown error occurred');
+        setError('An unknown error occurred during login');
       }
     } finally {
       setIsLoading(false);
@@ -120,12 +131,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         body: JSON.stringify({ name, email, password }),
       });
       
-      const data = await response.json();
-      
       if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+        let errorMessage = 'Registration failed';
+        try {
+          const data = await response.json();
+          errorMessage = data.message || errorMessage;
+        } catch (e) {
+          const textResponse = await response.text();
+          console.error('Register API did not return JSON. Response:', textResponse);
+          errorMessage = `Server error: Received non-JSON response. Status: ${response.status}`;
+        }
+        throw new Error(errorMessage);
       }
       
+      const data = await response.json();
       setUser(data.user);
       setIsAdmin(data.user.role === 'ADMIN');
       localStorage.setItem('token', data.token);
@@ -133,7 +152,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (error instanceof Error) {
         setError(error.message);
       } else {
-        setError('An unknown error occurred');
+        setError('An unknown error occurred during registration');
       }
     } finally {
       setIsLoading(false);
