@@ -8,7 +8,7 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
 
 **Deliverables:**
 
-*   **Backend implementation connected to your database (with at least basic CRUD operations). **
+*   **Backend implementation connected to your database (with at least basic CRUD operations).**
     *   The backend is built using Next.js API routes.
     *   Prisma ORM is used to interact with an SQLite database (development) or any Prisma-compatible database.
     *   Full CRUD (Create, Read, Update, Delete) operations are implemented for:
@@ -16,7 +16,7 @@ This project fulfills the requirements for Phase 2, focusing on implementation a
         *   Categories
         *   Users (Admin management)
         *   Orders
-*   **A functional frontend that interacts with the backend. **
+*   **A functional frontend that interacts with the backend.**
     *   The frontend is built with Next.js (React) and TypeScript.
     *   User interfaces are styled with Tailwind CSS.
     *   Key frontend components include:
