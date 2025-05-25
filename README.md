@@ -1,10 +1,10 @@
-# 🛍️ Luxe E-Commerce Platform
+# Luxe E-Commerce Platform
 
 A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma, and PostgreSQL. Features a beautiful dark/light theme, comprehensive admin panel, and robust inventory management.
 
-## 🌟 Features
+## Features
 
-### 🛒 **Customer Features**
+### **Customer Features**
 - **Product Catalog**: Browse products with categories, search, and filtering
 - **Shopping Cart**: Add/remove items with quantity management
 - **Checkout System**: Complete order processing with address and payment forms
@@ -13,7 +13,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **Responsive Design**: Mobile-first design with dark/light theme toggle
 - **Stock Validation**: Real-time stock checking prevents overselling
 
-### 👨‍💼 **Admin Features**
+### **Admin Features**
 - **Dashboard**: Overview with key metrics and recent activity
 - **Product Management**: Full CRUD operations for products
 - **Category Management**: Create, edit, and delete product categories
@@ -22,7 +22,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **Inventory Control**: Real-time stock tracking and management
 - **Admin Authentication**: Secure admin-only access controls
 
-### 🔧 **Technical Features**
+### **Technical Features**
 - **Database**: PostgreSQL with Prisma ORM
 - **Authentication**: JWT-based auth with role-based access control
 - **Stock Management**: Transaction-based inventory updates
@@ -30,7 +30,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **Type Safety**: Full TypeScript implementation
 - **Responsive UI**: Tailwind CSS with dark/light theme support
 
-## 🚀 Live Demo
+## Live Demo
 
 **Website**: [https://luxe-e.netlify.app/](https://luxe-e.netlify.app/)
 
@@ -39,7 +39,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **Password**: `admin123`
 - **Admin Panel**: [https://luxe-e.netlify.app/admin](https://luxe-e.netlify.app/admin)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
 - **Styling**: Tailwind CSS, Framer Motion
@@ -48,7 +48,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **Deployment**: Netlify
 - **Icons**: React Icons (Feather Icons)
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -90,7 +90,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
    npm run dev
    ```
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Core Models
 - **User**: Customer and admin accounts with role-based access
@@ -106,7 +106,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **User Roles**: Customer and admin role separation
 - **Transaction Safety**: Database transactions for data consistency
 
-## 🔐 Authentication & Authorization
+## Authentication & Authorization
 
 ### User Roles
 - **USER**: Standard customer access
@@ -117,7 +117,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - `/orders/*`: Authenticated users only
 - `/checkout`: Supports both guest and authenticated checkout
 
-## 📱 API Endpoints
+## API Endpoints
 
 ### Public Endpoints
 - `GET /api/products` - Get all products
@@ -138,7 +138,7 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - `POST /api/orders` - Create order
 - `GET /api/orders` - Get user orders
 
-## 🎨 UI/UX Features
+## UI/UX Features
 
 - **Dark/Light Theme**: Toggle between themes
 - **Responsive Design**: Mobile-first approach
@@ -147,9 +147,9 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - **Form Validation**: Client and server-side validation
 - **Toast Notifications**: Success/error feedback
 
-## 🔄 Recent Updates
+## Recent Updates
 
-### ✅ **Completed Features**
+### **Completed Features**
 - Fixed Prisma client singleton pattern for serverless deployment
 - Implemented comprehensive stock management system
 - Added transaction-based order processing
@@ -158,13 +158,13 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 - Added admin user seeding functionality
 - Improved error messages and validation
 
-### 🚀 **Performance Optimizations**
+### **Performance Optimizations**
 - Database connection pooling
 - Optimized API responses
 - Efficient state management
 - Lazy loading for better performance
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -172,11 +172,11 @@ A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma,
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Design Inspiration**: Modern e-commerce platforms
 - **Icons**: Feather Icons via React Icons
@@ -186,5 +186,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ by the Luxe Team**
+**Built by the Luxe Team**
 
