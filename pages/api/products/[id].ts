@@ -84,6 +84,7 @@ async function updateProductHandler(req: NextApiRequest, res: NextApiResponse, u
       categoryId, 
       images, 
       mainImage,
+      stock,
       inStock,
       featured,
       isNew
@@ -99,6 +100,11 @@ async function updateProductHandler(req: NextApiRequest, res: NextApiResponse, u
         ...(categoryId && { categoryId }),
         ...(mainImage && { mainImage }),
         ...(images && { images }),
+        ...(stock !== undefined && { 
+          stock: parseInt(stock.toString(), 10),
+          // Auto-update inStock based on stock quantity if inStock isn't explicitly provided
+          ...(inStock === undefined && { inStock: parseInt(stock.toString(), 10) > 0 })
+        }),
         ...(inStock !== undefined && { inStock }),
         ...(featured !== undefined && { featured }),
         ...(isNew !== undefined && { isNew })

@@ -141,7 +141,37 @@ async function ordersHandler(req: NextApiRequest, res: NextApiResponse, user: Us
       
       // Create the order with a prisma transaction to ensure data consistency
       const order = await prisma.$transaction(async (tx) => {
-        // Create the order first
+        // First, check stock availability and update stock
+        for (const item of items) {
+          const product = await tx.product.findUnique({
+            where: { id: item.productId },
+            select: { stock: true, name: true }
+          });
+          
+          if (!product) {
+            throw new Error(`Product with ID ${item.productId} not found`);
+          }
+          
+          if (product.stock < item.quantity) {
+            throw new Error(`Insufficient stock for ${product.name}. Available: ${product.stock}, Requested: ${item.quantity}`);
+          }
+          
+          // Update product stock
+          await tx.product.update({
+            where: { id: item.productId },
+            data: {
+              stock: {
+                decrement: item.quantity,
+              },
+              // Update inStock status based on remaining stock
+              inStock: {
+                set: product.stock - item.quantity > 0
+              }
+            },
+          });
+        }
+
+        // Create the order
         const newOrder = await tx.order.create({
           data: {
             userId: user.id,
@@ -186,18 +216,6 @@ async function ordersHandler(req: NextApiRequest, res: NextApiResponse, user: Us
           },
         });
       });
-      
-      // Update product stock
-      for (const item of items) {
-        await prisma.product.update({
-          where: { id: item.productId },
-          data: {
-            stock: {
-              decrement: item.quantity,
-            },
-          },
-        });
-      }
       
       // Format the response
       const formattedOrder = order ? {

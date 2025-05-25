@@ -101,12 +101,18 @@ async function orderByIdHandler(req: NextApiRequest, res: NextApiResponse, user:
       });
 
       if (status === 'CANCELLED' && order.status !== 'CANCELLED') {
-        for (const item of order.items) {
-          await prisma.product.update({
-            where: { id: item.productId },
-            data: { stock: { increment: item.quantity } },
-          });
-        }
+        // Restore stock in a transaction
+        await prisma.$transaction(async (tx) => {
+          for (const item of order.items) {
+            await tx.product.update({
+              where: { id: item.productId },
+              data: { 
+                stock: { increment: item.quantity },
+                inStock: true  // Product is back in stock
+              },
+            });
+          }
+        });
       }
       return res.status(200).json(updatedOrder);
     } else if (req.method === 'DELETE') {
