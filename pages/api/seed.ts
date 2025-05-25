@@ -12,7 +12,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const adminPassword = await hashPassword('admin123');
     const admin = await prisma.user.upsert({
       where: { email: 'admin@example.com' },
-      update: {},
+      update: {
+        name: 'Admin User',
+        password: adminPassword,
+        role: 'ADMIN',
+      },
       create: {
         name: 'Admin User',
         email: 'admin@example.com',
