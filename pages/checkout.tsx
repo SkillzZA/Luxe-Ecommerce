@@ -130,6 +130,7 @@ const CheckoutPage = () => {
       // Prepare order items
       const orderItems = items.map(item => ({
         productId: item.product.id,
+        productName: item.product.name,
         quantity: item.quantity,
         price: item.product.price
       }));
