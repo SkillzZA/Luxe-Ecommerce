@@ -6,10 +6,10 @@ import { useInView } from 'react-intersection-observer';
 
 // Sample team members data
 const teamMembers = [
-  { id: 1, name: 'Alex Johnson', role: 'Product', gender: 'men', photoId: 11 },
+  { id: 1, name: 'Mark William', role: 'Product', gender: 'men', photoId: 11 },
   { id: 2, name: 'Sarah Williams', role: 'Support', gender: 'women', photoId: 12 },
-  { id: 3, name: 'Michael Chen', role: 'Design', gender: 'men', photoId: 13 },
-  { id: 4, name: 'Emma Rodriguez', role: 'Development', gender: 'women', photoId: 14 },
+  { id: 3, name: 'Michael Williams', role: 'Design', gender: 'men', photoId: 13 },
+  { id: 4, name: 'Emma William', role: 'Development', gender: 'women', photoId: 14 },
 ];
 
 const AboutPage = () => {

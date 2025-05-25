@@ -1,185 +1,190 @@
-# Luxe Ecommerce
+# 🛍️ Luxe E-Commerce Platform
 
-A modern, full-stack e-commerce web application built with Next.js, TypeScript, Prisma, and Tailwind CSS. This project serves as a practical demonstration of building a feature-rich online store, suitable for a university course on web development.
+A modern, full-stack e-commerce platform built with Next.js, TypeScript, Prisma, and PostgreSQL. Features a beautiful dark/light theme, comprehensive admin panel, and robust inventory management.
 
-**Deliverables:**
+## 🌟 Features
 
-*   Backend implementation connected to your database (with at least basic CRUD operations).
-    *   The backend is built using Next.js API routes.
-    *   Prisma ORM is used to interact with an SQLite database (development) or any Prisma-compatible database.
-    *   Full CRUD (Create, Read, Update, Delete) operations are implemented for:
-        *   Products
-        *   Categories
-        *   Users (Admin management)
-        *   Orders
-*   A functional frontend that interacts with the backend.
-    *   The frontend is built with Next.js (React) and TypeScript.
-    *   User interfaces are styled with Tailwind CSS.
-    *   Key frontend components include:
-        *   Product listings and detail pages.
-        *   Category navigation.
-        *   User registration and login.
-        *   Shopping cart and checkout process.
-        *   Admin dashboard for managing products, categories, users, and orders.
-*   Full integration demonstrating user interaction with dynamic data.
-    *   The application showcases seamless interaction between the frontend and backend.
-    *   Data is dynamically fetched and updated without page reloads in many instances (e.g., cart updates, admin table actions).
-*   You should use XML or/and JSON for data transferring from Server to Client.
-    *   JSON is used as the data transfer format for all API communications between the server and client.
-*   Final README or report with setup instructions and explanation of the architecture.
-    *   This README provides setup instructions and an overview of the architecture.
-    *   **Architecture Overview:**
-        *   **Framework:** Next.js (handles both frontend rendering and backend API routes).
-        *   **Language:** TypeScript (for type safety across the stack).
-        *   **Database:** SQLite (default for development), managed by Prisma ORM.
-        *   **API Layer:** Next.js API routes (`pages/api`) handle requests from the frontend.
-        *   **Authentication:** Bearer token-based authentication for securing API endpoints, with admin-only restrictions for management functionalities. NextAuth.js is integrated for user session management on the client-side.
-        *   **Frontend:** React components (pages and components directories) render the UI, using Tailwind CSS for styling.
-        *   **State Management:** Combination of React Context API (e.g., for theme) and component-level state.
-        *   **Dynamic Interactions:** Client-side fetching and form submissions using `fetch` API, enabling AJAX-like behavior.
-*   Source code (submitted via GitHub or similar).
-    *   The complete source code is available in this repository.
-*   Hosting the app on a public server or cloud platform.
-    *   The application is ready to be deployed to platforms like Vercel (recommended for Next.js), Netlify, AWS, or Heroku.
-*   Using real-world data (via scraping, APIs, open datasets, etc.)
-    *   The project includes a seeding script (`prisma/seed.ts`) to populate the database with sample data. This can be extended to use real-world datasets or APIs for product information.
-*   Using AJAX for dynamic web based system.
-    *   The application extensively uses asynchronous JavaScript requests (akin to AJAX) via the `fetch` API to interact with the backend API for operations like adding to cart, placing orders, and managing data in the admin panel, providing a dynamic user experience without full page reloads.
+### 🛒 **Customer Features**
+- **Product Catalog**: Browse products with categories, search, and filtering
+- **Shopping Cart**: Add/remove items with quantity management
+- **Checkout System**: Complete order processing with address and payment forms
+- **User Authentication**: Register, login, and profile management
+- **Order Tracking**: View order history and status updates
+- **Responsive Design**: Mobile-first design with dark/light theme toggle
+- **Stock Validation**: Real-time stock checking prevents overselling
 
-## Features
+### 👨‍💼 **Admin Features**
+- **Dashboard**: Overview with key metrics and recent activity
+- **Product Management**: Full CRUD operations for products
+- **Category Management**: Create, edit, and delete product categories
+- **Order Management**: View, update order status, and track fulfillment
+- **User Management**: Manage customer accounts and roles
+- **Inventory Control**: Real-time stock tracking and management
+- **Admin Authentication**: Secure admin-only access controls
 
-*   **User Authentication:** Secure registration and login (client-side session via NextAuth.js, API authorization via Bearer Tokens).
-*   **Role-Based Access Control:** Distinct functionalities for regular users and administrators (e.g., admin panel).
-*   **Product Management (Admin):** Full CRUD operations for products, including details like name, description, price, and images.
-*   **Category Management (Admin):** Full CRUD operations for categories.
-*   **User Management (Admin):** View and manage user roles.
-*   **Order Management (Admin):** View all orders and update their status.
-*   **Product Catalog:** Browse products, view detailed information. Filter by category.
-*   **Shopping Cart:** Add, remove, and update product quantities.
-*   **Checkout Process:** Secure checkout process to place orders.
-*   **Order History:** Users can view their past orders.
-*   **Responsive Design:** UI built with Tailwind CSS for adaptability across devices.
-*   **Dark/Light Mode:** Theme toggling with persistence in local storage.
-*   **Dynamic Updates:** Many actions (cart, admin tables) update dynamically using client-side requests (AJAX-like).
+### 🔧 **Technical Features**
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT-based auth with role-based access control
+- **Stock Management**: Transaction-based inventory updates
+- **Error Handling**: Comprehensive error handling and validation
+- **Type Safety**: Full TypeScript implementation
+- **Responsive UI**: Tailwind CSS with dark/light theme support
 
-## Technology Stack
+## 🚀 Live Demo
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.1.0-blue)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-~5.3.3-blue)](https://www.typescriptlang.org/)
-[![Prisma](https://img.shields.io/badge/Prisma-~5.12.1-darkblue)](https://www.prisma.io/)
-[![NextAuth.js](https://img.shields.io/badge/NextAuth.js-~4.24.7-purple)](https://next-auth.js.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-~3.4.1-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![React](https://img.shields.io/badge/React-~18.2.0-61DAFB?logo=react&logoColor=black)](https://reactjs.org/)
-[![React Icons](https://img.shields.io/badge/React_Icons-~5.0.1-red)](https://react-icons.github.io/react-icons/)
-[![SQLite](https://img.shields.io/badge/SQLite-DB-blue)](https://www.sqlite.org/index.html)
-[![bcryptjs](https://img.shields.io/badge/bcryptjs-~2.4.3-red)](https://www.npmjs.com/package/bcryptjs)
-[![jsonwebtoken](https://img.shields.io/badge/jsonwebtoken-~9.0.2-orange)](https://www.npmjs.com/package/jsonwebtoken)
+**Website**: [https://luxe-e.netlify.app/](https://luxe-e.netlify.app/)
 
-| Category       | Technology                                                 | Version     | Role                                                      |
-| :------------- | :--------------------------------------------------------- | :---------- | :-------------------------------------------------------- |
-| **Framework**  | [Next.js](https://nextjs.org/)                             | `14.1.0`    | Full-stack React Framework                                |
-| **Language**   | [TypeScript](https://www.typescriptlang.org/)              | `~5.3.3`    | Superset of JavaScript                                    |
-| **Database**   | [Prisma](https://www.prisma.io/)                           | `~5.12.1`   | ORM / Database Toolkit (Update version from package.json) |
-|                | [SQLite](https://www.sqlite.org/index.html)                | -           | Database Engine (Development)                             |
-| **Auth**       | [NextAuth.js](https://next-auth.js.org/)                   | `~4.24.7`   | Authentication (Client Session)                           |
-|                | [bcryptjs](https://www.npmjs.com/package/bcryptjs)         | `~2.4.3`    | Password Hashing (Update version from package.json)       |
-|                | [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) | `~9.0.2`    | JWT Handling (API Auth Tokens)                            |
-| **Styling**    | [Tailwind CSS](https://tailwindcss.com/)                   | `~3.4.1`    | Utility-First CSS Framework                               |
-| **Frontend**   | [React](https://reactjs.org/)                              | `~18.2.0`   | UI Library                                                |
-| **Utilities**  | [React Icons](https://react-icons.github.io/react-icons/)  | `~5.0.1`    | Icon Library                                              |
-|                | [react-use](https://github.com/streamich/react-use)        | `~17.4.2`   | React Hooks Collection                                    |
-|                | [react-intersection-observer](https://github.com/thebuilder/react-intersection-observer) | `~9.5.3` | Intersection Observer Hook                          |
+### Admin Access
+- **Email**: `admin@example.com`
+- **Password**: `admin123`
+- **Admin Panel**: [https://luxe-e.netlify.app/admin](https://luxe-e.netlify.app/admin)
 
-## Getting Started
+## 🛠️ Tech Stack
 
-### Prerequisites
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS, Framer Motion
+- **Database**: PostgreSQL (Neon), Prisma ORM
+- **Authentication**: JWT, bcryptjs
+- **Deployment**: Netlify
+- **Icons**: React Icons (Feather Icons)
 
-*   [Node.js](https://nodejs.org/) (Version 18 or later recommended)
-*   [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+## 📦 Installation
 
-### Installation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SkillzZA/Luxe-Ecommerce.git
+   cd Luxe-Ecommerce
+   ```
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <your-repository-url>
-    cd luxe-ecommerce
-    ```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    # or
-    yarn install
-    ```
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Fill in your environment variables:
+   ```env
+   DATABASE_URL="your_postgresql_connection_string"
+   JWT_SECRET="your_jwt_secret"
+   NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_SECRET="your_nextauth_secret"
+   ```
 
-3.  **Set up environment variables:**
-    *   Copy the example environment file:
-        ```bash
-        cp .env.example .env
-        ```
-    *   Update the `.env` file with your specific configuration. Key variables likely include:
-        *   `DATABASE_URL`: Already set for SQLite (`file:./dev.db`). Change if using a different DB.
-        *   `NEXTAUTH_URL`: Your application's base URL (e.g., `http://localhost:3000` for development). This is crucial for NextAuth.js callbacks.
-        *   `NEXTAUTH_SECRET`: A secret key for NextAuth.js to sign cookies and tokens. Generate one using `openssl rand -base64 32` or a similar tool.
-        *   `JWT_SECRET`: A secret key for signing Bearer tokens used for API authentication. Generate a strong, unique key.
-        *   *(Add any other required variables like API keys if applicable)*
+4. **Set up the database**
+   ```bash
+   npx prisma generate
+   npx prisma migrate dev --name init
+   ```
 
-4.  **Set up the database:**
-    *   Apply Prisma migrations to create the database schema:
-        ```bash
-        npx prisma migrate dev --name init
-        ```
-    *   (Optional) Seed the database with initial data. The seed script creates a default admin user and sample products/categories.
-        ```bash
-        npx prisma db seed
-        ```
-        *(Note: The seed script is configured in `package.json` and executed by `prisma/seed.ts`)*
+5. **Seed the database** (optional)
+   ```bash
+   npm run seed
+   ```
 
-### Default Admin Credentials
+6. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-After seeding the database, you can log in with the default admin credentials:
-*   **Email:** `admin@example.com`
-*   **Password:** `adminpassword`
+## 🗄️ Database Schema
 
-### Running the Application
+### Core Models
+- **User**: Customer and admin accounts with role-based access
+- **Product**: Product catalog with categories, pricing, and inventory
+- **Category**: Product categorization system
+- **Order**: Order management with items and shipping
+- **CartItem**: Shopping cart functionality
+- **Address**: Customer shipping addresses
 
-1.  **Development Server:**
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    ```
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Key Features
+- **Stock Management**: Real-time inventory tracking
+- **Order Processing**: Complete order lifecycle management
+- **User Roles**: Customer and admin role separation
+- **Transaction Safety**: Database transactions for data consistency
 
-2.  **Production Build:**
-    ```bash
-    npm run build
-    ```
+## 🔐 Authentication & Authorization
 
-3.  **Start Production Server:**
-    ```bash
-    npm run start
-    ```
+### User Roles
+- **USER**: Standard customer access
+- **ADMIN**: Full administrative access
 
-## Available Scripts
+### Protected Routes
+- `/admin/*`: Admin-only access
+- `/orders/*`: Authenticated users only
+- `/checkout`: Supports both guest and authenticated checkout
 
-*   `dev`: Starts the development server.
-*   `build`: Creates a production build.
-*   `start`: Starts the production server.
-*   `lint`: Lints the codebase using Next.js's built-in ESLint configuration.
-*   `seed`: Seeds the database using the `prisma/seed.ts` script (requires `ts-node`).
+## 📱 API Endpoints
 
-## Project Structure Overview
+### Public Endpoints
+- `GET /api/products` - Get all products
+- `GET /api/categories` - Get all categories
+- `GET /api/products/[id]` - Get single product
 
-*   `pages/`: Next.js pages and API routes.
-    *   `pages/api/`: Backend API endpoints.
-    *   `pages/admin/`: Frontend pages for the admin dashboard.
-*   `components/`: Reusable React components.
-    *   `components/layout/`: Layout components like Navbar and Footer.
-*   `prisma/`: Prisma schema (`schema.prisma`), migrations, and seed script (`seed.ts`).
-*   `lib/`: Utility functions, helper modules (e.g., `authMiddleware.ts`).
-*   `context/`: React Context API providers (e.g., `ThemeContext.tsx`).
-*   `public/`: Static assets like images.
-*   `styles/`: Global CSS files.
-*   `types/`: TypeScript type definitions.
+### Protected Endpoints (Admin)
+- `POST /api/products` - Create product
+- `PUT /api/products/[id]` - Update product
+- `DELETE /api/products/[id]` - Delete product
+- `POST /api/categories` - Create category
+- `GET /api/users` - Get all users
+- `GET /api/orders` - Get all orders
+
+### User Endpoints
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `POST /api/orders` - Create order
+- `GET /api/orders` - Get user orders
+
+## 🎨 UI/UX Features
+
+- **Dark/Light Theme**: Toggle between themes
+- **Responsive Design**: Mobile-first approach
+- **Loading States**: Smooth loading animations
+- **Error Handling**: User-friendly error messages
+- **Form Validation**: Client and server-side validation
+- **Toast Notifications**: Success/error feedback
+
+## 🔄 Recent Updates
+
+### ✅ **Completed Features**
+- Fixed Prisma client singleton pattern for serverless deployment
+- Implemented comprehensive stock management system
+- Added transaction-based order processing
+- Created complete category management system
+- Fixed checkout process with proper error handling
+- Added admin user seeding functionality
+- Improved error messages and validation
+
+### 🚀 **Performance Optimizations**
+- Database connection pooling
+- Optimized API responses
+- Efficient state management
+- Lazy loading for better performance
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Design Inspiration**: Modern e-commerce platforms
+- **Icons**: Feather Icons via React Icons
+- **Images**: Unsplash for product placeholders
+- **Deployment**: Netlify for hosting
+- **Database**: Neon for PostgreSQL hosting
+
+---
+
+**Built with ❤️ by the Luxe Team**
 
