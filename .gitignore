@@ -48,3 +48,6 @@ coverage
 # .env*
 # !.env.example
 # !.env.sample
+
+# Local Netlify folder
+.netlify

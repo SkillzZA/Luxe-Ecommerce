@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { withAdmin } from '@/lib/auth';
-
-const prisma = new PrismaClient();
 
 // Handler function that will be wrapped with withAdmin middleware
 async function usersHandler(req: NextApiRequest, res: NextApiResponse, user: any) {

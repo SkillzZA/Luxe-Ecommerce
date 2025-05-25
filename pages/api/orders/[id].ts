@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient, OrderStatus, User as PrismaUser } from '@prisma/client';
+import { OrderStatus, User as PrismaUser } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { withAdmin } from '@/lib/auth';
-
-const prisma = new PrismaClient();
 
 // Define a type for the user object passed by withAdmin (adjust as needed from your withAdmin implementation)
 interface AdminUser {

@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient, OrderStatus, PaymentStatus, User } from '@prisma/client';
+import { OrderStatus, PaymentStatus, User } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { withAuth, withAdmin } from '@/lib/auth';
-
-const prisma = new PrismaClient();
 
 // Handler function for authenticated users
 async function ordersHandler(req: NextApiRequest, res: NextApiResponse, user: User) {
